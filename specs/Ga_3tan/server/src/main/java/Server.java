@@ -34,14 +34,15 @@ public class Server {
                                 case "ADD" -> Integer.parseInt(message[1]) + Integer.parseInt(message[2]);
                                 case "MULT" -> Integer.parseInt(message[1]) * Integer.parseInt(message[2]);
                                 case "SUB" -> Integer.parseInt(message[1]) - Integer.parseInt(message[2]);
-                                default -> throw new IllegalArgumentException();
+                                default -> throw new IllegalArgumentException(  "Unknown operator, type HELP to see " +
+                                                                                "supported operators"   );
                             };
                         } else {
-                            throw new IllegalArgumentException();
+                            throw new IllegalArgumentException("Bad number of tokens, must be 3");
                         }
                         writer.println("RESULT " + result);
                     } catch (Exception e) {
-                        writer.println("ERROR");
+                        writer.println("ERROR : " + e.getMessage());
                     }
                 }
                 writer.flush();
